@@ -42,9 +42,11 @@ jobs:
         gradle-version: 8.8
 
     - name: Build Isthmus
-      working-directory: ./substrait-java/isthmus
+      working-directory: ./substrait-java
       if: ${{ matrix.target == 'produce' }}
-      run: ../gradlew shadowJar
+      run: |-
+        git submodule foreach --recursive 'git fetch --unshallow || true'
+        ./gradlew isthmus:shadowJar
 
     - name: Copy Isthmus JARs
       if: ${{ matrix.target == 'produce' }}

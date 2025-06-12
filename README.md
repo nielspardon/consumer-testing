@@ -52,7 +52,7 @@ the [support matrix](SUPPORT_MATRIX.md) is used instead.
 # Setup
 Create and activate your conda environment with python3.9:
 ```commandline
-conda create -y -n substrait_consumer_testing -c conda-forge python=3.9 openjdk
+conda create -y -n substrait_consumer_testing -c conda-forge python=3.12 openjdk
 conda activate substrait_consumer_testing
 ```
 *Note: Java is used by Jpype to access the Isthmus producer.  
