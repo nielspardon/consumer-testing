@@ -62,12 +62,15 @@ jobs:
       if: ${{ matrix.producer == 'isthmus' }}
       uses: gradle/actions/setup-gradle@v4
       with:
+        cache-disabled: true
         gradle-version: 8.8
 
     - name: Build Isthmus
       if: ${{ matrix.producer == 'isthmus' }}
-      working-directory: ./substrait-java/isthmus
-      run: ../gradlew shadowJar
+      working-directory: ./substrait-java
+      run: |-
+        git submodule foreach --recursive 'git fetch --unshallow || true'
+        ./gradlew isthmus:shadowJar
 
     - name: Copy Isthmus JARs
       if: ${{ matrix.producer == 'isthmus' }}
